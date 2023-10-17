@@ -1,4 +1,5 @@
 import 'listpage.dart';
+import 'mapscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -46,6 +47,14 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             iconData: Icons.map_rounded,
             onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MapScreen(
+                          initialLatitude: 38.0341,
+                          initialLongitude: -78.4994,
+                        )),
+              );
               // Handle the map view button press
             },
           ),
