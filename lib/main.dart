@@ -11,30 +11,82 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hopper'), // Name of the app)
+        ),
+        body: MyMapScreen(), // Your map screen widget
+        bottomNavigationBar: MyBottomAppBar(),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+} // Custom bottom app bar
+
+class MyMapScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child:
+          Text('Map View'), // Display map view here, replace with your widget
     );
   }
 }
+
+class MyBottomAppBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      color:
+          Color.fromRGBO(35, 45, 75, 1), // Set the background color of the bar
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: Icon(Icons.map),
+            onPressed: () {
+              // Handle the map view button press
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.home),
+            onPressed: () {
+              // Handle the home button press
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.list),
+            onPressed: () {
+              // Handle the list view button press
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//     theme: ThemeData(
+//       // This is the theme of your application.
+//       //
+//       // TRY THIS: Try running your application with "flutter run". You'll see
+//       // the application has a blue toolbar. Then, without quitting the app,
+//       // try changing the seedColor in the colorScheme below to Colors.green
+//       // and then invoke "hot reload" (save your changes or press the "hot
+//       // reload" button in a Flutter-supported IDE, or press "r" if you used
+//       // the command line to start the app).
+//       //
+//       // Notice that the counter didn't reset back to zero; the application
+//       // state is not lost during the reload. To reset the state, use hot
+//       // restart instead.
+//       //
+//       // This works for code too, not just values: Most code changes can be
+//       // tested with just a hot reload.
+//       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+//       useMaterial3: true,
+//     ),
+//     home: const MyHomePage(title: 'Flutter Demo Home Page'),
+//   );
+// }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
