@@ -42,19 +42,19 @@ class MyBottomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.map),
+            icon: Icon(Icons.map, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
               // Handle the map view button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
               // Handle the home button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
               // Handle the list view button press
             },
