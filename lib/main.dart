@@ -1,5 +1,5 @@
 import 'listpage.dart';
-
+import 'mapscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,19 +45,27 @@ class MyBottomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.map),
+            icon: Icon(Icons.map, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MapScreen(
+                          initialLatitude: 38.0341,
+                          initialLongitude: -78.4994,
+                        )),
+              );
               // Handle the map view button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
               // Handle the home button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
               Navigator.push(
                 context,
