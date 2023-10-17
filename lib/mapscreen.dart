@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class MapScreen extends StatefulWidget {
-    final double initialLatitude;
+  final double initialLatitude;
   final double initialLongitude;
 
   MapScreen({
@@ -38,6 +37,3 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 }
-
-
-

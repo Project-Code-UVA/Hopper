@@ -58,7 +58,6 @@ class IconButton extends StatelessWidget {
   });
 
   @override
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
