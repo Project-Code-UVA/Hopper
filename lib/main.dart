@@ -1,5 +1,4 @@
 import 'listpage.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,27 +44,50 @@ class MyBottomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.map, color: Color.fromRGBO(229, 114, 0, 1)),
-            onPressed: () {
+            iconData: Icons.map_rounded,
+            onTap: () {
               // Handle the map view button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.home, color: Color.fromRGBO(229, 114, 0, 1)),
-            onPressed: () {
+            iconData: Icons.home,
+            onTap: () {
               // Handle the home button press
             },
           ),
           IconButton(
-            icon: Icon(Icons.list, color: Color.fromRGBO(229, 114, 0, 1)),
-            onPressed: () {
+            iconData: Icons.list_alt,
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ListPage()),
               );
-              // Handle the list view button press
             },
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class IconButton extends StatelessWidget {
+  final IconData iconData;
+  final VoidCallback onTap;
+
+  IconButton({
+    required this.iconData,
+    required this.onTap,
+  });
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(iconData, color: Color.fromRGBO(229, 114, 0, 1)),
         ],
       ),
     );
