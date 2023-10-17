@@ -1,3 +1,5 @@
+import 'listpage.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 35, 45, 75),
           title: Text('Hopper'), // Name of the app)
         ),
         body: MyMapScreen(), // Your map screen widget
@@ -56,6 +59,10 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.list, color: Color.fromRGBO(229, 114, 0, 1)),
             onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ListPage()),
+              );
               // Handle the list view button press
             },
           ),
@@ -133,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.amber,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
