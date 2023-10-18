@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hopper/main.dart';
 
 class ListPage extends StatelessWidget {
   @override
@@ -6,6 +7,7 @@ class ListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('List Page'),
+        backgroundColor: Color.fromRGBO(35, 45, 75, 1),
       ),
       body: Center(
         child: Text('This is the List Page content'),
@@ -25,23 +27,14 @@ class MyBottomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            iconData: Icons.map_rounded,
-            onTap: () {
-              // Handle the map view button press
-            },
-          ),
-          IconButton(
-            iconData: Icons.home,
-            onTap: () {
-              // Handle the home button press
-            },
-          ),
-          IconButton(
-            iconData: Icons.list_alt,
-            onTap: () {
-              // Do Nothing
-            },
-          ),
+              iconData: Icons.home,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              })
+          // Do something
         ],
       ),
     );
