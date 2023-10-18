@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "978968848844",
+    "project_id": "hopper-19606",
+    "storage_bucket": "hopper-19606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978968848844:android:3c0800f6b34c261ea8d569",
+        "android_client_info": {
+          "package_name": "com.example.hopper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb1LXTAe0v16nEu_JE_u2AfB69bomqcAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
