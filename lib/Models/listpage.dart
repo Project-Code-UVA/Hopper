@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hopper/Views/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Services/firebase_options.dart';
+
 
 class ListPage extends StatelessWidget {
+
+  //useful resource that explains how this reads in data: https://firebase.flutter.dev/docs/firestore/usage/
+  final Stream<QuerySnapshot> streamFruitItems = FirebaseFirestore.instance.collection('Bars').snapshots();
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,8 +17,28 @@ class ListPage extends StatelessWidget {
         title: Text('List Page'),
         backgroundColor: Color.fromRGBO(35, 45, 75, 1),
       ),
-      body: Center(
-        child: Text('This is the List Page content'),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: streamFruitItems,
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          //if error, return error
+          if(snapshot.hasError){
+            return Center(child: Text(snapshot.error.toString()));
+          }
+          //if connected, fetch data
+          if(snapshot.connectionState==ConnectionState.active){
+            QuerySnapshot querySnapshot = snapshot.data;
+            List<QueryDocumentSnapshot> listQueryDocumentSnapshot = querySnapshot.docs;
+
+            return ListView.builder(
+              itemCount: listQueryDocumentSnapshot.length,
+              itemBuilder: (content, index){
+                QueryDocumentSnapshot document = listQueryDocumentSnapshot[index];
+                return Text(document['Name']);
+              }
+            );
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
       bottomNavigationBar: MyBottomAppBar(),
     );
@@ -44,6 +72,7 @@ class MyBottomAppBar extends StatelessWidget {
 class IconButton extends StatelessWidget {
   final IconData iconData;
   final VoidCallback onTap;
+
 
   IconButton({
     required this.iconData,
