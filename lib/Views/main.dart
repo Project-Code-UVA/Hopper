@@ -17,10 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 169, 172, 183),
-          title: const Text('Hopper'),
-        ),
         body: MapScreen(),
         bottomNavigationBar: MyBottomAppBar(),
       ),
