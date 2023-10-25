@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hopper/Views/main.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
@@ -10,10 +11,20 @@ class ListPage extends StatelessWidget {
         title: const Text('List Page'),
         backgroundColor: const Color.fromRGBO(35, 45, 75, 1),
       ),
-      body: Container(
-          child: Center(
-        child: Text('This is the List Page content'),
-      )),
+      body: Stack(
+        children: [
+          MapScreen(), // Keep the MapScreen here
+          Opacity(
+            opacity: 0.7, // Adjust this value for the desired transparency
+            child: Container(
+              color: Colors.black, // Set the background color here
+            ),
+          ),
+          Center(
+            child: Text('This is the List Page content'),
+          ),
+        ],
+      ),
       bottomNavigationBar: const MyBottomAppBar(),
     );
   }
