@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.transparent,
         body: MapScreen(),
-        bottomNavigationBar: MyBottomAppBar(),
+        bottomNavigationBar: AppBar(),
       ),
     );
   }
@@ -64,11 +64,12 @@ class TransparentRoute extends PageRoute<void> {
   }
 }
 
-class MyBottomAppBar extends StatelessWidget {
+class AppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: const Color.fromRGBO(35, 45, 75, 1),
+      // color: const Color.fromRGBO(35, 45, 75, 1),
+      color: Colors.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -89,10 +90,12 @@ class MyBottomAppBar extends StatelessWidget {
 
 class IconButton extends StatelessWidget {
   final IconData iconData;
+  final double iconSize; // Add a size parameter for the icon size
   final VoidCallback onTap;
 
   IconButton({
     required this.iconData,
+    this.iconSize = 35.0, // Default icon size
     required this.onTap,
   });
 
@@ -103,7 +106,11 @@ class IconButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(iconData, color: const Color.fromRGBO(229, 114, 0, 1)),
+          Icon(
+            iconData,
+            color: const Color.fromRGBO(229, 114, 0, 1),
+            size: iconSize, // Set the size of the icon
+          ),
         ],
       ),
     );
