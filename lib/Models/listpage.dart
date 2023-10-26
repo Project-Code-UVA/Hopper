@@ -11,13 +11,13 @@ class ListPage extends StatelessWidget {
           Positioned(
             child: Center(
               child: Transform.scale(
-                scale: 1.1, // Adjust the scale factor as needed
+                scale: 1.3, // Adjust the scale factor as needed
                 child: Image.asset('assets/Default_Map.jpeg'),
               ),
             ),
           ),
           Opacity(
-            opacity: 0.7,
+            opacity: 0.4,
             child: Container(
               color: Colors.black,
             ),
@@ -35,33 +35,41 @@ class ListPage extends StatelessWidget {
       child: ListView(
         // Wrap the list with a ListView for scrolling
         children: <Widget>[
-          CustomRoundedRectangle(
-            title: 'Trin',
+          BarListItem(
+            title: 'Trininity',
           ),
-          CustomRoundedRectangle(
+          BarListItem(
             title: 'Coupes',
           ),
-          // Add more instances of CustomRoundedRectangle with different content
+          BarListItem(
+            title: 'Boylan',
+          ),
+          BarListItem(
+            title: 'Virginian',
+          ),
+          BarListItem(
+            title: 'Biltmore',
+          ),
         ],
       ),
     );
   }
 }
 
-class CustomRoundedRectangle extends StatelessWidget {
+class BarListItem extends StatelessWidget {
   final String title;
 
-  CustomRoundedRectangle({required this.title});
+  BarListItem({required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: 0.6,
+      opacity: 0.7,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
           child: Container(
@@ -94,12 +102,13 @@ class MyBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: const Color.fromRGBO(35, 45, 75, 1),
+      // color: const Color.fromRGBO(35, 45, 75, 1),
+      color: Colors.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            iconData: Icons.home,
+            iconData: Icons.map_rounded,
             onTap: () {
               Navigator.of(context).pop();
             },
@@ -113,11 +122,12 @@ class MyBottomAppBar extends StatelessWidget {
 
 class IconButton extends StatelessWidget {
   final IconData iconData;
+  final double iconSize; // Add a size parameter for the icon size
   final VoidCallback onTap;
 
   IconButton({
-    Key? key,
     required this.iconData,
+    this.iconSize = 35.0, // Default icon size
     required this.onTap,
   });
 
@@ -128,7 +138,11 @@ class IconButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(iconData, color: const Color.fromRGBO(229, 114, 0, 1)),
+          Icon(
+            iconData,
+            color: const Color.fromRGBO(229, 114, 0, 1),
+            size: iconSize, // Set the size of the icon
+          ),
         ],
       ),
     );
