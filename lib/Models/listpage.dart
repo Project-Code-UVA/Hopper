@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hopper/Models/mapscreen.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
