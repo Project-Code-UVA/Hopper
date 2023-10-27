@@ -25,7 +25,7 @@ class ListPage extends StatelessWidget {
           _buildRoundedRectangles(),
         ],
       ),
-      bottomNavigationBar: AppBar(),
+      bottomNavigationBar: const MyBottomAppBar(),
     );
   }
 
@@ -96,8 +96,8 @@ class BarListItem extends StatelessWidget {
   }
 }
 
-class AppBar extends StatelessWidget {
-  const AppBar({Key? key});
+class MyBottomAppBar extends StatelessWidget {
+  const MyBottomAppBar({Key? key});
 
   @override
   Widget build(BuildContext context) {
