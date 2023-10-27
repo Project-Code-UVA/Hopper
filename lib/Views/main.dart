@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Get rid of debug banner
       home: Scaffold(
         backgroundColor: Colors.transparent,
         body: MapScreen(),
