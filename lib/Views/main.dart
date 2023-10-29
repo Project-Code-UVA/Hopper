@@ -1,4 +1,5 @@
 import '../Models/listpage.dart';
+import '../Models/mapscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,24 +44,24 @@ class MyApp extends StatelessWidget {
   }
 } // Custom bottom app bar
 
-class MapScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GoogleMap(
-        key: ValueKey(
-            'AIzaSyBfoDZ-MJWx231WVeEq_N4vqi2hYRUTguY'), // Add your API key as a string
-        initialCameraPosition: CameraPosition(
-          target: LatLng(38.0345, -78.4990), // Set the initial map coordinates
-          zoom: 16.2, // Set the initial zoom level
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          // You can customize the map using the controller here
-        },
-      ),
-    );
-  }
-}
+// class MapScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: GoogleMap(
+//         key: ValueKey(
+//             'AIzaSyBfoDZ-MJWx231WVeEq_N4vqi2hYRUTguY'), // Add your API key as a string
+//         initialCameraPosition: CameraPosition(
+//           target: LatLng(38.0345, -78.4990), // Set the initial map coordinates
+//           zoom: 16.2, // Set the initial zoom level
+//         ),
+//         onMapCreated: (GoogleMapController controller) {
+//           // You can customize the map using the controller here
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class MyBottomAppBar extends StatelessWidget {
   @override
