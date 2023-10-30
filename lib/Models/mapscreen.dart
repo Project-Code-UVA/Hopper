@@ -81,7 +81,7 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ),
           Align(
-            alignment: Alignment(1.035, 1.0154),
+            alignment: Alignment(1.0388, 1.0172),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: FloatingActionButton(
