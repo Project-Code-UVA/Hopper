@@ -46,16 +46,6 @@ class _MapScreenState extends State<MapScreen> {
               }
             },
           ),
-          GestureDetector(
-            onTap: () {
-              // When you tap somewhere other than the search bar, unfocus the text field.
-              FocusScope.of(context).unfocus();
-            },
-            child: Container(
-              // Use a transparent container to cover the entire screen except the search bar
-              color: Colors.transparent,
-            ),
-          ),
           Positioned(
             top: 60,
             left: 20,
