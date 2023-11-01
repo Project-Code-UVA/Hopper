@@ -46,6 +46,16 @@ class _MapScreenState extends State<MapScreen> {
               }
             },
           ),
+          GestureDetector(
+            onTap: () {
+              // When you tap somewhere other than the search bar, unfocus the text field.
+              FocusScope.of(context).unfocus();
+            },
+            child: Container(
+              // Use a transparent container to cover the entire screen except the search bar
+              color: Colors.transparent,
+            ),
+          ),
           Positioned(
             top: 60,
             left: 20,
@@ -57,10 +67,10 @@ class _MapScreenState extends State<MapScreen> {
               ),
               child: TextField(
                 controller: searchController,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white, // Set the text color to white
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(15),
                   hintText: 'Search',
                   hintStyle: TextStyle(
@@ -69,8 +79,7 @@ class _MapScreenState extends State<MapScreen> {
                   border: InputBorder.none,
                   prefixIcon: ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      const Color.fromRGBO(
-                          229, 114, 0, 1), // Set the icon color here
+                      Color.fromRGBO(229, 114, 0, 1), // Set the icon color here
                       BlendMode.srcIn,
                     ),
                     child: Icon(Icons.search),
@@ -98,7 +107,7 @@ class _MapScreenState extends State<MapScreen> {
                 backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
                 foregroundColor: const Color.fromRGBO(229, 114, 0, 1),
                 elevation: 4.0,
-                child: Icon(Icons.location_searching),
+                child: const Icon(Icons.location_searching),
               ),
             ),
           ),
