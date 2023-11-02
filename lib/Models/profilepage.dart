@@ -1,105 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:hopper/Models/profilepage.dart';
+import 'package:hopper/Models/listpage.dart';
 import 'package:hopper/Views/main.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: ListPage(),
+  runApp(const MaterialApp(
+    home: ProfilePage(),
   ));
 }
 
-class ListPage extends StatelessWidget {
-  const ListPage({Key? key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(
-            child: Center(
-              child: Transform.scale(
-                scale: 1.3, // Adjust the scale factor as needed
-                child: Image.asset('assets/Default_Map.jpeg'),
-              ),
-            ),
-          ),
-          Opacity(
-            opacity: 0.4,
-            child: Container(
-              color: Colors.black,
-            ),
-          ),
-          _buildRoundedRectangles(),
-        ],
-      ),
-      bottomNavigationBar: const AppBar(),
-    );
-  }
-
-  Widget _buildRoundedRectangles() {
-    return Container(
-      margin: EdgeInsets.only(top: 50.0),
-      child: ListView(
-        // Wrap the list with a ListView for scrolling
-        children: <Widget>[
-          BarListItem(
-            title: 'Trininity',
-          ),
-          BarListItem(
-            title: 'Coupes',
-          ),
-          BarListItem(
-            title: 'Boylan',
-          ),
-          BarListItem(
-            title: 'Virginian',
-          ),
-          BarListItem(
-            title: 'Biltmore',
-          ),
-        ],
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        bottomNavigationBar: const AppBar(),
       ),
     );
   }
 }
 
-class BarListItem extends StatelessWidget {
-  final String title;
-
-  BarListItem({required this.title});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.7,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(12.0),
-          child: Container(
-            width: 400.0,
-            height: 150.0,
-            color: Colors.black,
-            child: Center(
-              child: ListTile(
-                title: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfilePage(),
     );
   }
 }
@@ -156,27 +86,31 @@ class AppBar extends StatelessWidget {
           IconButton(
             iconData: Icons.map_rounded,
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                TransparentRoute(
-                    builder: (BuildContext context) => const Home()),
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      Home(),
+                  transitionDuration: Duration(
+                      seconds: 0), // Set the duration to zero for no animation
+                ),
               );
             },
           ),
           IconButton(
             iconData: Icons.list_alt,
-            isPageIcon: true,
-            onTap: () {},
-          ),
-          IconButton(
-            iconData: Icons.person,
             onTap: () {
               Navigator.push(
                 context,
                 TransparentRoute(
-                    builder: (BuildContext context) => const ProfilePage()),
+                    builder: (BuildContext context) => const ListPage()),
               );
             },
+          ),
+          IconButton(
+            iconData: Icons.person,
+            isPageIcon: true,
+            onTap: () {},
           )
         ],
       ),

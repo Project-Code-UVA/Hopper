@@ -83,26 +83,33 @@ class _MapScreenState extends State<MapScreen> {
             alignment: Alignment(1.0388, 1.0172),
             child: Padding(
               padding: const EdgeInsets.all(16),
-              child: FloatingActionButton(
-                onPressed: () {
-                  if (_controller != null) {
-                    CameraPosition newPosition = CameraPosition(
-                      target: LatLng(initialLat, initialLong),
-                      zoom: 16.2,
-                    );
-                    _controller!.animateCamera(
-                        CameraUpdate.newCameraPosition(newPosition));
-                  }
-                },
-                backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
-                foregroundColor: const Color.fromRGBO(229, 114, 0, 1),
-                elevation: 4.0,
-                child: const Icon(Icons.location_searching),
+              child: Transform.scale(
+                scale: 1.1, // Adjust the scale factor as needed
+                child: FloatingActionButton(
+                  onPressed: () {
+                    if (_controller != null) {
+                      CameraPosition newPosition = CameraPosition(
+                        target: LatLng(initialLat, initialLong),
+                        zoom: 16.2,
+                      );
+                      _controller!.animateCamera(
+                          CameraUpdate.newCameraPosition(newPosition));
+                    }
+                  },
+                  backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
+                  foregroundColor: const Color.fromRGBO(229, 114, 0, 1),
+                  elevation: 4.0,
+                  child: const Icon(Icons.location_searching),
+                ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 }
+
+// google map controller
+
+
