@@ -171,10 +171,14 @@ class AppBar extends StatelessWidget {
           IconButton(
             iconData: Icons.person,
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                TransparentRoute(
-                    builder: (BuildContext context) => const ProfilePage()),
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      ProfilePage(),
+                  transitionDuration: Duration(
+                      seconds: 0), // Set the duration to zero for no animation
+                ),
               );
             },
           )
