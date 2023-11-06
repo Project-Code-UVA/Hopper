@@ -84,7 +84,7 @@ class AppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            iconData: Icons.map_rounded,
+            iconData: Icons.location_on,
             onTap: () {
               Navigator.pushReplacement(
                 context,
