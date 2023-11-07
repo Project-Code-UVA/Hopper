@@ -26,6 +26,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.hopper"
     compileSdkVersion flutter.compileSdkVersion
+    // compileSdkVersion 31
     ndkVersion flutter.ndkVersion
 
     compileOptions {

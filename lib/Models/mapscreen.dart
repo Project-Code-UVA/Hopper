@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,12 +11,15 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+
+  //creation of markers and initialization of marker image --------------------
   late BitmapDescriptor pinLocationIcon;
   Completer<GoogleMapController> _controller = Completer();
   Map<MarkerId, Marker> markers = {};
 
   @override
   void initState() {
+    getCurrentLocation();
     super.initState();
     setCustomMapPin();
     getMarkerData();
@@ -70,18 +74,66 @@ class _MapScreenState extends State<MapScreen> {
       print("Invalid location data for marker: $specifyId");
     }
   }
+  //end of marker creation --------------------------------------
+
+  //start of user location tracking
+  Future<Position> getCurrentLocation() async {
+    var permission = await Geolocator.checkPermission();
+
+    if(permission == LocationPermission.denied){
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied){
+        return Future.error("Location permission denied");
+      }
+    }
+
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final markerId = MarkerId("currentLocation");
+    final marker = Marker(
+        markerId: markerId,
+        position: LatLng(position!.latitude, position.longitude),
+      );
+    markers[markerId] = marker;
+    return position;
+  }
+
+  late GoogleMapController googleMapController;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        key: ValueKey('AIzaSyBfoDZ-MJWx231WVeEq_N4vqi2hYRUTguY'), // Add your API key as a string
-        initialCameraPosition: CameraPosition(
-          target: LatLng(38.0345, -78.4990), // Adjust the initial map position
-          zoom: 15.0,
-        ),
-        markers: Set<Marker>.of(markers.values),
-      ),
-    );
-  }
+Widget build(BuildContext context) {
+  return FutureBuilder<Position>(
+    future: getCurrentLocation(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        final position = snapshot.data;
+
+        return GoogleMap(
+          key: ValueKey('AIzaSyBfoDZ-MJWx231WVeEq_N4vqi2hYRUTguY'), // Add your API key as a string
+          initialCameraPosition: CameraPosition(
+            // target: LatLng(position!.latitude, position.longitude),
+            target: LatLng(38.0345, -78.4990), // Adjust the initial map position
+            zoom: 15.0,
+          ),
+          markers: Set<Marker>.of(markers.values),
+          //FEATURE: uncomment when you want to center camera around user.
+          // onMapCreated: (controller) {
+          //   controller.animateCamera(
+          //     CameraUpdate.newCameraPosition(
+          //       CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 15.0),
+          //     ),
+          //   );
+          // },
+        );
+      } else if (snapshot.connectionState == ConnectionState.waiting) {
+        // Display a loading indicator while waiting for the initial location.
+        return CircularProgressIndicator();
+      } else {
+        // Handle any errors or fallback to a default location if necessary.
+        return Text('Error or default location');
+      }
+    },
+  );
+}
 }
