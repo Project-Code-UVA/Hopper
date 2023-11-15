@@ -50,7 +50,7 @@ class _MapScreenState extends State<MapScreen> {
 
   void showMenuBar(BuildContext context, String barName) {
     showModalBottomSheet(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(8.0),
         ),
@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
       barrierColor: Colors.transparent,
       builder: (BuildContext context) {
         return Container(
-          color: Color.fromRGBO(24, 24, 24, 1),
+          color: const Color.fromRGBO(24, 24, 24, 1),
           height: 350,
           child: Column(
             children: [
@@ -70,16 +70,40 @@ class _MapScreenState extends State<MapScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(2.5),
                 ),
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
               ),
-              SizedBox(
-                  height: 20), // Add some space between the rectangle and text
-              Text(
-                barName,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
+              const SizedBox(height: 20),
+              // Use Row and Align for the menu bar
+              Row(
+                children: [
+                  // Align the menu bar to the left
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: Icon(Icons.menu, color: Colors.white),
+                      onPressed: () {},
+                    ),
+                  ),
+                  // Centered Text
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        barName,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      icon: Icon(Icons.search, color: Colors.white),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -108,10 +132,10 @@ class _MapScreenState extends State<MapScreen> {
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
         } else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       },
     );
@@ -121,7 +145,7 @@ class _MapScreenState extends State<MapScreen> {
     return {
       Marker(
         markerId: const MarkerId("Trinity"),
-        position: LatLng(38.034935, -78.5003),
+        position: const LatLng(38.034935, -78.5003),
         onDragEnd: (value) {},
         icon: markerIcon,
         onTap: () {
@@ -130,7 +154,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       Marker(
         markerId: const MarkerId("Boylan"),
-        position: LatLng(38.0341, -78.4994),
+        position: const LatLng(38.0341, -78.4994),
         onDragEnd: (value) {},
         icon: markerIcon,
         onTap: () {
@@ -139,7 +163,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       Marker(
         markerId: const MarkerId("Biltmore"),
-        position: LatLng(38.036305, -78.50051),
+        position: const LatLng(38.036305, -78.50051),
         icon: markerIcon,
         onTap: () {
           showMenuBar(context, "Biltmore");
@@ -147,7 +171,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       Marker(
         markerId: const MarkerId("Coupes"),
-        position: LatLng(38.03596, -78.50038),
+        position: const LatLng(38.03596, -78.50038),
         icon: markerIcon,
         onTap: () {
           showMenuBar(context, "Coupes");
@@ -155,7 +179,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       Marker(
         markerId: const MarkerId("Crozet"),
-        position: LatLng(38.036695, -78.50039),
+        position: const LatLng(38.036695, -78.50039),
         icon: markerIcon,
         onTap: () {
           showMenuBar(context, "Crozet");
@@ -202,7 +226,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Widget buildLocationButton() {
     return Align(
-      alignment: Alignment(1.0388, 1.0172),
+      alignment: const Alignment(1.0388, 1.0172),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Transform.scale(
