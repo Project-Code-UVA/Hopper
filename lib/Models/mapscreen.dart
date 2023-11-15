@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+
+final Stream<QuerySnapshot> barData = FirebaseFirestore.instance.collection('Bars').snapshots();
 
 class MapScreen extends StatefulWidget {
   @override
@@ -10,15 +16,17 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   final initialLat = 38.0345;
   final initialLong = -78.4990;
-
+  LatLng? currentLocation;
   GoogleMapController? _controller;
   TextEditingController searchController = TextEditingController();
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  bool locationServiceActive = true;
 
   @override
   void initState() {
     super.initState();
     addCustomIcon();
+    determinePosition();
   }
 
   void addCustomIcon() {
@@ -46,6 +54,38 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ),
     );
+  }
+  Future<void> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled, request user to enable it.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time user will be asked again.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error('Location permissions are permanently denied');
+    }
+
+    // When we reach here, permissions are granted and we can continue accessing the device's location.
+    Geolocator.getCurrentPosition().then((Position position) {
+      setState(() {
+        currentLocation = LatLng(position.latitude, position.longitude);
+      });
+    });
   }
 
   void showMenuBar(BuildContext context, String barName) {
@@ -117,7 +157,11 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  Set<Marker> buildMarkers() {
+
+
+
+
+Set<Marker> buildMarkers() {
     return {
       Marker(
         markerId: const MarkerId("Trinity"),

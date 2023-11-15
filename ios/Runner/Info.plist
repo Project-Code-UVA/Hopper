@@ -5,7 +5,8 @@
 	<!-- Location services for map -->
 	<key>GoogleMapsApiKey</key>
 	<string>AIzaSyBfoDZ-MJWx231WVeEq_N4vqi2hYRUTguY</string>
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Hopper requires location access to work</string>
 
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

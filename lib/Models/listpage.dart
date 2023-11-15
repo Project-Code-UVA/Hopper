@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hopper/Models/profilepage.dart';
 import 'package:hopper/Views/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Services/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     home: ListPage(),
   ));
 }
+
+
+  //useful resource that explains how this reads in data: https://firebase.flutter.dev/docs/firestore/usage/
+  final Stream<QuerySnapshot> listBarData = FirebaseFirestore.instance.collection('Bars').snapshots();
 
 class ListPage extends StatelessWidget {
   const ListPage({Key? key});
@@ -37,31 +47,31 @@ class ListPage extends StatelessWidget {
     );
   }
 
-  Widget _buildRoundedRectangles() {
-    return Container(
-      margin: EdgeInsets.only(top: 50.0),
-      child: ListView(
-        // Wrap the list with a ListView for scrolling
-        children: <Widget>[
-          BarListItem(
-            title: 'Trininity',
-          ),
-          BarListItem(
-            title: 'Coupes',
-          ),
-          BarListItem(
-            title: 'Boylan',
-          ),
-          BarListItem(
-            title: 'Virginian',
-          ),
-          BarListItem(
-            title: 'Biltmore',
-          ),
-        ],
-      ),
-    );
-  }
+Widget _buildRoundedRectangles() {
+  return StreamBuilder<QuerySnapshot>(
+    stream: listBarData,
+    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+      // Check for errors
+      if (snapshot.hasError) {
+        return Text('Something went wrong');
+      }
+
+      // Show loading state until data is available
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      }
+
+      // Build the list based on the data in the snapshot
+      return ListView(
+        children: snapshot.data!.docs.map((DocumentSnapshot document) {
+          Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+          return BarListItem(title: data['Name']); 
+        }).toList(),
+      );
+    },
+  );
+}
+
 }
 
 class BarListItem extends StatelessWidget {

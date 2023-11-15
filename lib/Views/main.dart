@@ -1,11 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
+import '../Models/listpage.dart';
+import '../Models/mapscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hopper/Models/listpage.dart';
 import 'package:hopper/Models/mapscreen.dart';
 import 'package:hopper/Models/profilepage.dart';
+import '../Services/firebase_options.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const Home());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class Home extends StatelessWidget {
@@ -83,7 +91,7 @@ class AppBar extends StatelessWidget {
               Navigator.push(
                 context,
                 TransparentRoute(
-                    builder: (BuildContext context) => const ListPage()),
+                    builder: (BuildContext context) =>  const ListPage()),
               );
             },
           ),
