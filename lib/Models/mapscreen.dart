@@ -67,7 +67,7 @@ class _MapScreenState extends State<MapScreen> {
                 width: 40,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 167, 167, 167),
                   borderRadius: BorderRadius.circular(2.5),
                 ),
                 margin: const EdgeInsets.only(top: 10),
@@ -80,7 +80,8 @@ class _MapScreenState extends State<MapScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
-                      icon: Icon(Icons.menu, color: Colors.white),
+                      icon: Icon(Icons.menu,
+                          color: Color.fromARGB(255, 167, 167, 167)),
                       onPressed: () {},
                     ),
                   ),
@@ -90,7 +91,7 @@ class _MapScreenState extends State<MapScreen> {
                       child: Text(
                         barName,
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 167, 167, 167),
                           fontSize: 20,
                         ),
                       ),
@@ -99,7 +100,8 @@ class _MapScreenState extends State<MapScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                      icon: Icon(Icons.search, color: Colors.white),
+                      icon: Icon(Icons.streetview_outlined,
+                          color: Color.fromARGB(255, 167, 167, 167)),
                       onPressed: () {},
                     ),
                   ),
@@ -207,18 +209,18 @@ class _MapScreenState extends State<MapScreen> {
             contentPadding: EdgeInsets.all(15),
             hintText: 'Search',
             hintStyle: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 167, 167, 167),
             ),
             border: InputBorder.none,
             prefixIcon: ColorFiltered(
               colorFilter: ColorFilter.mode(
-                Color.fromRGBO(229, 114, 0, 1),
+                Color.fromARGB(255, 167, 167, 167),
                 BlendMode.srcIn,
               ),
               child: Icon(Icons.search),
             ),
           ),
-          cursorColor: Colors.white,
+          cursorColor: Color.fromARGB(255, 167, 167, 167),
         ),
       ),
     );
@@ -226,26 +228,32 @@ class _MapScreenState extends State<MapScreen> {
 
   Widget buildLocationButton() {
     return Align(
-      alignment: const Alignment(1.0388, 1.0172),
+      alignment: const Alignment(1.059, 1.019),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Transform.scale(
-          scale: 1.1,
-          child: FloatingActionButton(
-            onPressed: () {
-              if (_controller != null) {
-                CameraPosition newPosition = CameraPosition(
-                  target: LatLng(initialLat, initialLong),
-                  zoom: 16.2,
-                );
-                _controller!
-                    .animateCamera(CameraUpdate.newCameraPosition(newPosition));
-              }
-            },
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 1),
-            foregroundColor: const Color.fromRGBO(229, 114, 0, 1),
-            elevation: 4.0,
-            child: const Icon(Icons.location_searching),
+        child: ClipOval(
+          child: Material(
+            color: Colors.black,
+            child: InkWell(
+              onTap: () {
+                if (_controller != null) {
+                  CameraPosition newPosition = CameraPosition(
+                    target: LatLng(initialLat, initialLong),
+                    zoom: 16.2,
+                  );
+                  _controller!.animateCamera(
+                      CameraUpdate.newCameraPosition(newPosition));
+                }
+              },
+              splashColor: Color.fromARGB(255, 34, 34, 34),
+              child: const Padding(
+                padding: EdgeInsets.all(18.0), // Adjusted padding here
+                child: Icon(
+                  Icons.location_searching,
+                  color: Color.fromARGB(255, 167, 167, 167),
+                ),
+              ),
+            ),
           ),
         ),
       ),
