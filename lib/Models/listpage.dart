@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: ListPage(),
   ));
 }
@@ -36,7 +36,7 @@ class ListPage extends StatelessWidget {
 
   Widget _buildRoundedRectangles() {
     return Container(
-      margin: EdgeInsets.only(top: 50.0),
+      margin: const EdgeInsets.only(top: 50.0),
       child: ListView(
         // Wrap the list with a ListView for scrolling
         children: <Widget>[
@@ -74,7 +74,7 @@ class BarListItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
           child: Container(

@@ -67,7 +67,7 @@ class _MapScreenState extends State<MapScreen> {
                 width: 40,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 167, 167, 167),
+                  color: const Color.fromARGB(255, 167, 167, 167),
                   borderRadius: BorderRadius.circular(2.5),
                 ),
                 margin: const EdgeInsets.only(top: 10),
@@ -80,7 +80,7 @@ class _MapScreenState extends State<MapScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: IconButton(
-                      icon: Icon(Icons.menu,
+                      icon: const Icon(Icons.menu,
                           color: Color.fromARGB(255, 167, 167, 167)),
                       onPressed: () {},
                     ),
@@ -100,7 +100,7 @@ class _MapScreenState extends State<MapScreen> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                      icon: Icon(Icons.streetview_outlined,
+                      icon: const Icon(Icons.streetview_outlined,
                           color: Color.fromARGB(255, 167, 167, 167)),
                       onPressed: () {},
                     ),
@@ -220,7 +220,7 @@ class _MapScreenState extends State<MapScreen> {
               child: Icon(Icons.search),
             ),
           ),
-          cursorColor: Color.fromARGB(255, 167, 167, 167),
+          cursorColor: const Color.fromARGB(255, 167, 167, 167),
         ),
       ),
     );
@@ -245,7 +245,7 @@ class _MapScreenState extends State<MapScreen> {
                       CameraUpdate.newCameraPosition(newPosition));
                 }
               },
-              splashColor: Color.fromARGB(255, 34, 34, 34),
+              splashColor: const Color.fromARGB(255, 34, 34, 34),
               child: const Padding(
                 padding: EdgeInsets.all(18.0), // Adjusted padding here
                 child: Icon(
