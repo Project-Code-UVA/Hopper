@@ -16,15 +16,3 @@ class ProfilePage extends StatelessWidget {
     );
   }
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
-    );
-  }
-}
