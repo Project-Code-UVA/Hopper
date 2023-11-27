@@ -17,11 +17,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: MapScreen(),
-        bottomNavigationBar: const IconBar(),
+        bottomNavigationBar: IconBar(),
       ),
     );
   }
@@ -45,7 +45,7 @@ class _IconBarState extends State<IconBar> {
           data: NavigationBarThemeData(
             backgroundColor: Colors.black,
             indicatorColor: Colors.white,
-            labelTextStyle: MaterialStateProperty.all(TextStyle(
+            labelTextStyle: MaterialStateProperty.all(const TextStyle(
                 fontSize: 14, color: Color.fromRGBO(167, 167, 167, 1))),
           ),
           child: NavigationBar(
@@ -90,7 +90,7 @@ class _IconBarState extends State<IconBar> {
             ],
           )),
       body: <Widget>[
-        MapScreen(),
+        const MapScreen(),
         const ListPage(),
         const ProfilePage()
       ][currentPageIndex],
