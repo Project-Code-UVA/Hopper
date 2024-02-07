@@ -49,7 +49,7 @@ class _IconBarState extends State<IconBar> {
                 fontSize: 14, color: Color.fromRGBO(167, 167, 167, 1))),
           ),
           child: NavigationBar(
-            height: 56,
+            height: 70,
             onDestinationSelected: (int index) {
               setState(() {
                 currentPageIndex = index;

@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
   void addCustomIcon() {
     BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(),
-      "assets/bar_icon.png",
+      "assets/bar_icon_smaller.png",
     ).then((icon) {
       setState(() {
         markerIcon = icon;
